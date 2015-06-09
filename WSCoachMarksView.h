@@ -65,5 +65,5 @@
 - (void)coachMarksView:(WSCoachMarksView*)coachMarksView didNavigateToIndex:(NSUInteger)index;
 - (void)coachMarksViewWillCleanup:(WSCoachMarksView*)coachMarksView;
 - (void)coachMarksViewDidCleanup:(WSCoachMarksView*)coachMarksView;
-
+- (void)coachMarksView:(WSCoachMarksView*)coachMarksView didTapOnIndex:(NSUInteger)index;
 @end

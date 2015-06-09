@@ -143,6 +143,18 @@ static const BOOL kEnableSkipButton = YES;
 #pragma mark - Touch handler
 
 - (void)userDidTap:(UITapGestureRecognizer *)recognizer {
+
+    // determine if the user tapped the coach mark
+    CGPoint point = [recognizer locationInView:self];
+    NSDictionary *markDef = [self.coachMarks objectAtIndex:markIndex];
+    CGRect markRect = [[markDef objectForKey:@"rect"] CGRectValue];
+    
+    if (CGRectContainsPoint(markRect, point)) {
+        if ([self.delegate respondsToSelector:@selector(coachMarksView:didTapOnIndex:)]) {
+            [self.delegate coachMarksView:self didTapOnIndex:markIndex];
+        }
+    }
+    
     // Go to the next coach mark
     [self goToCoachMarkIndexed:(markIndex+1)];
 }
