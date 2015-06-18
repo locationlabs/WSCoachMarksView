@@ -182,7 +182,7 @@ static const BOOL kEnableSkipButton = YES;
 - (void)goToCoachMarkIndexed:(NSUInteger)index {
     // Out of bounds
     if (index >= self.coachMarks.count) {
-        [self cleanup];
+        [self cleanup:true];
         return;
     }
 
@@ -266,9 +266,9 @@ static const BOOL kEnableSkipButton = YES;
 
 #pragma mark - Cleanup
 
-- (void)cleanup {
+- (void)cleanup: (BOOL)notify {
     // Delegate (coachMarksViewWillCleanup:)
-    if ([self.delegate respondsToSelector:@selector(coachMarksViewWillCleanup:)]) {
+    if (notify && [self.delegate respondsToSelector:@selector(coachMarksViewWillCleanup:)]) {
         [self.delegate coachMarksViewWillCleanup:self];
     }
 
@@ -282,7 +282,7 @@ static const BOOL kEnableSkipButton = YES;
                          [self removeFromSuperview];
 
                          // Delegate (coachMarksViewDidCleanup:)
-                         if ([self.delegate respondsToSelector:@selector(coachMarksViewDidCleanup:)]) {
+                         if (notify && [self.delegate respondsToSelector:@selector(coachMarksViewDidCleanup:)]) {
                              [self.delegate coachMarksViewDidCleanup:self];
                          }
                      }];

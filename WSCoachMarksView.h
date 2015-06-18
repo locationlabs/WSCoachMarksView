@@ -55,7 +55,7 @@
 
 - (id)initWithFrame:(CGRect)frame coachMarks:(NSArray *)marks;
 - (void)start;
-
+- (void)cleanup:(BOOL)notify;
 @end
 
 @protocol WSCoachMarksViewDelegate <NSObject>
